@@ -1,0 +1,22 @@
+public static boolean checkLogin(String uname,String pass)
+    {
+    	boolean flag=false;
+    	Connection con=connectionToDB();
+    	try {
+			PreparedStatement stmt=con.prepareStatement("select * from signup where uname=? and password=?");
+			stmt.setString(1, uname);
+			stmt.setString(2, pass);
+			ResultSet rs=stmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				
+					flag=true;
+				
+			}
+			return flag;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
